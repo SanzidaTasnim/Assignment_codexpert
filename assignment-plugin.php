@@ -118,9 +118,8 @@ function assp_update_product_info() {
 
 	$message_headers  = "xyz.com\n" . 'Content-Type: text/plain; charset ="' . get_option( 'blog_charset' ) . "\"\n";
 	$message_headers .= $username;
-    $get_url = get_permalink();
-
-	$mail_status = wp_mail( $username, 'Test Email Status', "Permalink: <a href='$get_url'>$get_url</a>" , $message_headers );
+    $get_url = get_permalink(get_current_user_id());
+	$mail_status = wp_mail( $username, 'Test Email Status', "Permalink: <a href='$get_url'>View the link</a>" , $message_headers );
 
     wp_send_json_success( array(
         'my_data' => $user_id,
